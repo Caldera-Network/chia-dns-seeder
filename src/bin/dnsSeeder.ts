@@ -22,18 +22,24 @@ dnsSeeder
     .action(async () => {
         /* DNS Seeder Options */
         const networkOptions = {
-            certPath: config.get("certPath"),
-            concurrency: config.get("concurrency"),
-            connectionTimeout: config.get("connectionTimeout"),
-            keyPath: config.get("keyPath"),
-            network: config.get("network"),
-            peer: config.get("peer"),
-            startNodes: config.get("startNodes")
+            certPath: config.get('certPath'),
+            concurrency: config.get('concurrency'),
+            connectionTimeout: config.get('connectionTimeout'),
+            keyPath: config.get('keyPath'),
+            network: config.get('network'),
+            peer: config.get('peer'),
+            startNodes: config.get('startNodes'),
         } as NetworkScannerOptions;
 
         /* Cloudflare Constants */
-        const token = process.env.CLOUDFLARE_TOKEN || config.get("cloudflare.apiToken") || '';
-        const zoneId = process.env.CLOUDFLARE_ZONE || config.get("cloudflare.zoneId") || '';
+        const token =
+            process.env.CLOUDFLARE_TOKEN ||
+            config.get('cloudflare.apiToken') ||
+            '';
+        const zoneId =
+            process.env.CLOUDFLARE_ZONE ||
+            config.get('cloudflare.zoneId') ||
+            '';
 
         if (token === '') {
             console.error(
@@ -47,7 +53,7 @@ dnsSeeder
             );
             process.exit(1);
         }
-        if (networkOptions?.network?.protocolVersion === "0.0.0") {
+        if (networkOptions?.network?.protocolVersion === '0.0.0') {
             console.error(
                 `Protocol Version is '0.0.0', please update the '${config.path}' file`
             );

@@ -8,8 +8,7 @@ interface DefaultConfig extends NetworkScannerOptions {
     cloudflare: {
         apiToken: string;
         zoneId: string;
-
-    }
+    };
 }
 // Create a Configstore instance.
 const defaults: DefaultConfig = {
@@ -34,5 +33,5 @@ const defaults: DefaultConfig = {
     concurrency: 50,
     certPath: '/root/.caldera/mainnet/config/ssl/ca/caldera_ca.crt',
     keyPath: '/root/.caldera/mainnet/config/ssl/ca/caldera_ca.key',
-}
+};
 export const config = new Configstore(packageJson.name, defaults);
