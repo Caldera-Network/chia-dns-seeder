@@ -1,9 +1,9 @@
 {
-  "name": "@caldera-network/chia-dns-seeder",
+  "name": "@caldera-network/dns-seeder",
   "version": "1.0.0",
   "description": "Scans a network for active full nodes and stores their IP's in Cloudflare DNS",
   "bin": {
-    "chia-dns-seeder": "./dist/bin/dnsSeeder.js"
+    "dns-seeder": "./dist/bin/dnsSeeder.js"
   },
   "main": "./dist/bin/dnsSeeder.js",
   "types": "./dist/bin/dnsSeeder.d.js",
@@ -18,7 +18,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/caldera-network/chia-dns-seeder.git"
+    "url": "git+https://github.com/caldera-network/dns-seeder.git"
   },
   "keywords": [
     "caldera",
@@ -34,9 +34,9 @@
   "author": "Caldera Network",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/caldera-network/chia-dns-seeder/issues"
+    "url": "https://github.com/caldera-network/dns-seeder/issues"
   },
-  "homepage": "https://github.com/caldera-network/chia-dns-seeder#readme",
+  "homepage": "https://github.com/caldera-network/dns-seeder#readme",
   "devDependencies": {
     "@types/cloudflare": "^2.7.3",
     "@types/node": "^16.4.13",

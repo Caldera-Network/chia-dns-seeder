@@ -1,4 +1,4 @@
-import { ChiaNetworkScanner } from '@caldera-network/chia-network-scanner';
+import { ChiaNetworkScanner as NetworkScanner } from '@caldera-network/chia-network-scanner';
 import { NetworkScannerOptions } from '@caldera-network/chia-network-scanner/dist/lib/utils/options';
 import { AxiosRequestConfig } from 'axios';
 import cf, { DnsRecord } from 'cloudflare';
@@ -6,21 +6,21 @@ import { CloudFlareResults } from '../cloudflare/cloudflare.types';
 import { axiosRequest, getCloudflareType } from '../utils/utils';
 
 export class DNSSeeder {
-    private chiaNetworkScanner: ChiaNetworkScanner;
+    private networkScanner: NetworkScanner;
     private cloudflare: cf;
     public constructor(
         private readonly token: string,
         private readonly zoneId: string,
         networkScannerOptions: NetworkScannerOptions
     ) {
-        this.chiaNetworkScanner = new ChiaNetworkScanner(networkScannerOptions);
+        this.networkScanner = new NetworkScanner(networkScannerOptions);
         this.cloudflare = new cf({
             token,
         });
     }
 
     public async execute() {
-        const peers = await this.chiaNetworkScanner.scan();
+        const peers = await this.networkScanner.scan();
         const reducedPeers: string[] = peers.reduce(
             (acc, curr) => [...acc, curr.hostname] as any, // TODO: Fix typing
             []
