@@ -1,5 +1,5 @@
-import { NetworkScannerOptions } from '@caldera-network/chia-network-scanner/dist/lib/utils/options';
-import Configstore from 'configstore';
+import { NetworkScannerOptions } from '@caldera-network/chia-network-scanner';
+import conf from "conf"
 import { readFileSync } from 'fs';
 
 const packageJson = JSON.parse(readFileSync('../../../package.json', 'utf8'));
@@ -34,4 +34,7 @@ const defaults: DefaultConfig = {
     certPath: '/root/.caldera/mainnet/config/ssl/ca/caldera_ca.crt',
     keyPath: '/root/.caldera/mainnet/config/ssl/ca/caldera_ca.key',
 };
-export const config = new Configstore(packageJson.name, defaults);
+export const dnsSeederConfig = new conf({
+    configName: packageJson.name,
+    defaults,
+});

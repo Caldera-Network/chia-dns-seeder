@@ -1,5 +1,5 @@
 import { ChiaNetworkScanner as NetworkScanner } from '@caldera-network/chia-network-scanner';
-import { NetworkScannerOptions } from '@caldera-network/chia-network-scanner/dist/lib/utils/options';
+import { NetworkScannerOptions } from '@caldera-network/chia-network-scanner';
 import { AxiosRequestConfig } from 'axios';
 import cf, { DnsRecord } from 'cloudflare';
 import { CloudFlareResults } from '../cloudflare/cloudflare.types';
