@@ -1,8 +1,8 @@
 # DNS Seeder
 
-Performs an asyncronous scan of a Chia blockchain algorithm network & stores DNS data in Cloudflare.
+Routlinely scans a Chia Blockchain Algorithm Network and stores data in Cloudflare, allowing Chia forks to increase stability and futureproof their blockchains by utilizing DNS Seeders.
 
-## Donate   
+## Donate
 
 [Coinbase](https://commerce.coinbase.com/checkout/5ed151a5-4d24-4dd9-9d1e-8f31648dd271)
 
