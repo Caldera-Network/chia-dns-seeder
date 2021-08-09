@@ -1,8 +1,6 @@
 # Chia DNS Seeder
 
-Performs an asyncronous scan of a Chia fork & stores data in cloudflare.
-
-Rather than implementing a full node it communicates with another full node and requests it's peers - from there a graph traversal of the network is performed.
+Performs an asyncronous scan of a Chia Algorithm Network & stores DNS data in Cloudflare.
 
 ## Donate   
 
