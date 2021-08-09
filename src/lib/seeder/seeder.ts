@@ -1,7 +1,7 @@
 import { ChiaNetworkScanner } from '@caldera-network/chia-network-scanner';
+import { NetworkScannerOptions } from '@caldera-network/chia-network-scanner/dist/lib/utils/options';
 import { AxiosRequestConfig } from 'axios';
 import cf, { DnsRecord } from 'cloudflare';
-import { settings } from 'src/config/settings';
 import { CloudFlareResults } from '../cloudflare/cloudflare.types';
 import { axiosRequest, getCloudflareType } from '../utils/utils';
 
@@ -10,9 +10,10 @@ export class DNSSeeder {
     private cloudflare: cf;
     public constructor(
         private readonly token: string,
-        private readonly zoneId: string
+        private readonly zoneId: string,
+        networkScannerOptions: NetworkScannerOptions
     ) {
-        this.chiaNetworkScanner = new ChiaNetworkScanner(settings);
+        this.chiaNetworkScanner = new ChiaNetworkScanner(networkScannerOptions);
         this.cloudflare = new cf({
             token,
         });
