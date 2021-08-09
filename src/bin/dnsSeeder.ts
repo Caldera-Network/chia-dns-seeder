@@ -66,5 +66,5 @@ dnsSeeder
 
 dnsSeeder.parse(process.argv);
 const options = dnsSeeder.opts();
-if (options.token) process.env.CLOUDFLARE_TOKEN = options.token;
-if (options.zone) process.env.CLOUDFLARE_ZONE = options.zone;
+if (options.apiToken) process.env.CLOUDFLARE_TOKEN = options.apiToken;
+if (options.zoneId) process.env.CLOUDFLARE_ZONE = options.zoneId;
