@@ -46,7 +46,7 @@
     "typescript": "^4.0.5"
   },
   "dependencies": {
-    "@caldera-network/chia-network-scanner": "^6.0.3",
+    "@caldera-network/chia-network-scanner": "^6.0.4",
     "axios": "^0.21.1",
     "cloudflare": "^2.7.0",
     "commander": "^8.1.0",
