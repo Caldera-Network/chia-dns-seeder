@@ -1,9 +1,11 @@
 import { NetworkScannerOptions } from '@caldera-network/chia-network-scanner';
-import conf from "conf"
+import conf from 'conf';
 import { readFileSync } from 'fs';
 import path from 'path';
 
-const packageJson = JSON.parse(readFileSync(path.resolve(__dirname, '../../../package.json'), 'utf8'));
+const packageJson = JSON.parse(
+    readFileSync(path.resolve(__dirname, '../../../package.json'), 'utf8')
+);
 
 interface DefaultConfig extends NetworkScannerOptions {
     cloudflare: {
