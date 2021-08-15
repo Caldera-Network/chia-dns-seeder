@@ -4,7 +4,6 @@ import { dnsSeederConfig } from 'src/lib/utils/config';
 import { NetworkScannerOptions, parseOptions } from '@caldera-network/chia-network-scanner';
 
 export const startCommand = createCommand('start')
-    .option('-ns, --no-scheduler', 'One-shot to run without schedule')
     .option('-t, --apiToken <apiToken>', 'Cloudflare API Token')
     .option('-z, --zoneId <zoneId>', 'Cloudflare Zone ID')
     .option('-ns, --no-scheduler', 'One-shot to run without schedule')
