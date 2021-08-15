@@ -1,14 +1,18 @@
-import { createCommand } from 'commander';
+import { createCommand, program } from 'commander';
 import { DNSSeeder } from '../lib/seeder/seeder';
 import { dnsSeederConfig } from 'src/lib/utils/config';
-import { NetworkScannerOptions } from '@caldera-network/chia-network-scanner';
+import { NetworkScannerOptions, parseOptions } from '@caldera-network/chia-network-scanner';
 
 export const startCommand = createCommand('start')
+    .option('-ns, --no-scheduler', 'One-shot to run without schedule')
     .option('-t, --apiToken <apiToken>', 'Cloudflare API Token')
     .option('-z, --zoneId <zoneId>', 'Cloudflare Zone ID')
+    .option('-ns, --no-scheduler', 'One-shot to run without schedule')
     .description('Executes The Scan & Upload')
     .action(async () => {
         /* Cloudflare Options */
+        const options = startCommand.opts();
+        const useScheduler = options.scheduler ? true : false;
         const token =
             process.env.CLOUDFLARE_TOKEN ||
             dnsSeederConfig.get('cloudflare.apiToken') ||
@@ -48,5 +52,9 @@ export const startCommand = createCommand('start')
         }
 
         const dnsSeeder = new DNSSeeder(token, zoneId, networkOptions);
-        dnsSeeder.execute();
+
+        if (useScheduler) {
+            const schedule = require('node-schedule');
+            const job = schedule.scheduleJob('*/30 * * * *', dnsSeeder.execute());
+        } else { dnsSeeder.execute(); }
     });
