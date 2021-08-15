@@ -37,6 +37,10 @@ const defaults: DefaultConfig = {
     certPath: '/root/.caldera/mainnet/config/ssl/ca/caldera_ca.crt',
     keyPath: '/root/.caldera/mainnet/config/ssl/ca/caldera_ca.key',
 };
+
+export const scheduler = {
+    jobSchedule: '*/30 * * * *',
+}
 export const dnsSeederConfig = new conf({
     configName: packageJson.name,
     defaults,
