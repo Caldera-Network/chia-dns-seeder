@@ -39,7 +39,7 @@
   "homepage": "https://github.com/caldera-network/dns-seeder#readme",
   "devDependencies": {
     "@types/cloudflare": "^2.7.3",
-    "@types/node": "^16.4.13",
+    "@types/node": "^16.6.1",
     "@types/update-notifier": "^5.1.0",
     "prettier": "^2.1.2",
     "tsc-alias": "^1.3.8",
@@ -53,6 +53,7 @@
     "conf": "^10.0.2",
     "configstore": "^6.0.0",
     "is-ip": "^3.1.0",
+    "node-schedule": "^2.0.0",
     "update-notifier": "^5.1.0"
   }
 }
