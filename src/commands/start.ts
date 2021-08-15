@@ -1,7 +1,7 @@
-import { createCommand, program } from 'commander';
+import { createCommand } from 'commander';
 import { DNSSeeder } from '../lib/seeder/seeder';
 import { dnsSeederConfig } from 'src/lib/utils/config';
-import { NetworkScannerOptions, parseOptions } from '@caldera-network/chia-network-scanner';
+import { NetworkScannerOptions } from '@caldera-network/chia-network-scanner';
 
 export const startCommand = createCommand('start')
     .option('-t, --apiToken <apiToken>', 'Cloudflare API Token')
