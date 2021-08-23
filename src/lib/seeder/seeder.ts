@@ -1,22 +1,17 @@
 import { ChiaNetworkScanner as NetworkScanner } from '@caldera-network/chia-network-scanner';
 import { NetworkScannerOptions } from '@caldera-network/chia-network-scanner';
 import { AxiosRequestConfig } from 'axios';
-import cf, { DnsRecord } from 'cloudflare';
-import { CloudFlareResults } from '../cloudflare/cloudflare.types';
+import { CloudFlareResults, DnsRecord } from '../cloudflare/cloudflare.types';
 import { axiosRequest, getCloudflareType } from '../utils/utils';
 
 export class DNSSeeder {
     private networkScanner: NetworkScanner;
-    private cloudflare: cf;
     public constructor(
         private readonly token: string,
         private readonly zoneId: string,
         networkScannerOptions: NetworkScannerOptions
     ) {
         this.networkScanner = new NetworkScanner(networkScannerOptions);
-        this.cloudflare = new cf({
-            token,
-        });
     }
 
     public async execute() {
@@ -41,7 +36,7 @@ export class DNSSeeder {
                 alreadyInCloudflare.push(cloudFlareResult.content);
             } else {
                 // Not in Peer List, remove from cloudflare
-                this.cloudflareDelete(cloudFlareResult.id)
+                this.cloudflareDelete(cloudFlareResult.id);
             }
         });
 
@@ -94,13 +89,11 @@ export class DNSSeeder {
                 ttl: 600,
                 proxied: false,
             };
-            allPromises.push(
-                this.cloudflare.dnsRecords.add(this.zoneId, dnsRecord)
-            );
+            allPromises.push(this.cloudflareAdd(dnsRecord));
         }
         await Promise.all(allPromises);
     }
-    private async cloudflareDelete(id: string): Promise<{id: string}> {
+    private async cloudflareDelete(id: string): Promise<{ id: string }> {
         const url = `https://api.cloudflare.com/client/v4/zones/${this.zoneId}/dns_records/${id}`;
         const config: AxiosRequestConfig = {
             method: 'DELETE',
@@ -111,6 +104,20 @@ export class DNSSeeder {
         };
 
         const axiosResponse = await axiosRequest(config);
-        return axiosResponse.data.result as {id: string};
+        return axiosResponse.data.result as { id: string };
+    }
+    private async cloudflareAdd(data: DnsRecord): Promise<any> {
+        const url = `https://api.cloudflare.com/client/v4/zones/${this.zoneId}/dns_records`;
+        const config: AxiosRequestConfig = {
+            method: 'POST',
+            url,
+            headers: {
+                Authorization: `Bearer ${this.token}`,
+            },
+            data,
+        };
+
+        const axiosResponse = await axiosRequest(config);
+        return axiosResponse.data;
     }
 }
