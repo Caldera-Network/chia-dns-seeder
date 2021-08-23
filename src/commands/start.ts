@@ -1,6 +1,6 @@
 import { createCommand } from 'commander';
 import { DNSSeeder } from '../lib/seeder/seeder';
-import { dnsSeederConfig, scheduler } from 'src/lib/utils/config';
+import { dnsSeederConfig } from 'src/lib/utils/config';
 import { NetworkScannerOptions } from '@caldera-network/chia-network-scanner';
 import schedule from 'node-schedule';
 
@@ -54,8 +54,10 @@ export const startCommand = createCommand('start')
         const dnsSeeder = new DNSSeeder(token, zoneId, networkOptions);
 
         if (useScheduler) {
-            const job = schedule.scheduleJob(scheduler.jobSchedule, () => {
+            schedule.scheduleJob(dnsSeederConfig.get('schedule'), () => {
                 dnsSeeder.execute();
             });
-        } else { dnsSeeder.execute(); }
+        } else {
+            dnsSeeder.execute();
+        }
     });

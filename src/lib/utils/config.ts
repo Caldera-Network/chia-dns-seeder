@@ -8,6 +8,8 @@ const packageJson = JSON.parse(
 );
 
 interface DefaultConfig extends NetworkScannerOptions {
+    /** Crontab Schedule */
+    schedule: string;
     cloudflare: {
         apiToken: string;
         zoneId: string;
@@ -15,6 +17,7 @@ interface DefaultConfig extends NetworkScannerOptions {
 }
 // Create a Configstore instance.
 const defaults: DefaultConfig = {
+    schedule: '*/30 * * * *',
     cloudflare: {
         apiToken: '',
         zoneId: '',
@@ -38,9 +41,6 @@ const defaults: DefaultConfig = {
     keyPath: '/root/.caldera/mainnet/config/ssl/ca/caldera_ca.key',
 };
 
-export const scheduler = {
-    jobSchedule: '*/30 * * * *',
-}
 export const dnsSeederConfig = new conf({
     configName: packageJson.name,
     defaults,
