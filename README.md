@@ -56,6 +56,7 @@ XCH: `xch1jhp9n6h30qmqjknmldd3y4948325npfkfs6f7jn8v3u8cgw5ykks9zlvae`
 ### Default Config
 ```
 {
+    schedule: '*/30 * * * *',
     cloudflare: {
         apiToken: '',
         zoneId: '',
