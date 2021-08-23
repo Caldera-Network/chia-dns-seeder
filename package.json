@@ -1,6 +1,6 @@
 {
   "name": "@caldera-network/dns-seeder",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Scans a network for active full nodes and stores their IP's in Cloudflare DNS",
   "bin": {
     "dns-seeder": "./dist/bin/dnsSeeder.js"
