@@ -12,8 +12,9 @@ export async function axiosRequest(
     const axiosResponse = await axios
         .request(config)
         .catch((error: AxiosError) => {
-            if (error.response?.status !== 409) {
-                throw new Error(
+            // TODO: Handle record size limit exceeded error
+            // Data: {"result":null,"success":false,"errors":[{"code":83011,"message":"Total record size limit exceeded."}],"messages":[]}
+                console.error(
                     `${error.message}\nData: ${JSON.stringify(
                         error.response?.data
                     )}\n\nAxiosConfig:${JSON.stringify(
@@ -22,7 +23,6 @@ export async function axiosRequest(
                         2
                     )}`
                 );
-            }
         });
     return axiosResponse as AxiosResponse;
 }

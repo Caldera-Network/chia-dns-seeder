@@ -79,6 +79,7 @@ export class DNSSeeder {
         const axiosResponse = await axiosRequest(config);
         return axiosResponse.data.result as CloudFlareResults[];
     }
+    // TODO: Determine if we should use bulk upload
     private async cloudflareUpload(peers: string[]) {
         const allPromises: Promise<any>[] = [];
         for (let i = 0; i < peers.length; i += 1) {
@@ -106,6 +107,7 @@ export class DNSSeeder {
         const axiosResponse = await axiosRequest(config);
         return axiosResponse.data.result as { id: string };
     }
+
     private async cloudflareAdd(data: DnsRecord): Promise<any> {
         const url = `https://api.cloudflare.com/client/v4/zones/${this.zoneId}/dns_records`;
         const config: AxiosRequestConfig = {
