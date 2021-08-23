@@ -41,10 +41,7 @@ export class DNSSeeder {
                 alreadyInCloudflare.push(cloudFlareResult.content);
             } else {
                 // Not in Peer List, remove from cloudflare
-                this.cloudflare.dnsRecords.del(
-                    cloudFlareResult.zone_id,
-                    cloudFlareResult.id
-                );
+                this.cloudflareDelete(cloudFlareResult.id)
             }
         });
 
@@ -102,5 +99,18 @@ export class DNSSeeder {
             );
         }
         await Promise.all(allPromises);
+    }
+    private async cloudflareDelete(id: string): Promise<{id: string}> {
+        const url = `https://api.cloudflare.com/client/v4/zones/${this.zoneId}/dns_records/${id}`;
+        const config: AxiosRequestConfig = {
+            method: 'DELETE',
+            url,
+            headers: {
+                Authorization: `Bearer ${this.token}`,
+            },
+        };
+
+        const axiosResponse = await axiosRequest(config);
+        return axiosResponse.data.result as {id: string};
     }
 }
